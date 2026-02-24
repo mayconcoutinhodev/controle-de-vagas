@@ -17,3 +17,32 @@ export async function GET() {
     );
   }
 }
+
+
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
+
+    const job = await prisma.job.create({
+      data: {
+        cidade: body.cidade,
+        empresa: body.empresa,
+        url: body.url,
+        descricao: body.descricao,
+        local: body.local,
+        status: body.status,
+        tipo: body.tipo,
+        qualidade: body.qualidade,
+        chance: body.chance,
+        habilidades: body.habilidades,
+      },
+    });
+
+    return NextResponse.json(job, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Erro ao criar vaga" },
+      { status: 500 }
+    );
+  }
+}
