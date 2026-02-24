@@ -1,11 +1,52 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  provider = "prisma-client-js"
 }
-
 datasource db {
   provider = "sqlite"
+}
+enum JobLocation {
+  PRESENCIAL
+  REMOTO
+  HIBRIDO
+  NAO_INFORMADO
+}
+enum JobStatus {
+  SALVA
+  APLICADO
+  DESISTI
+  SEM_RESPOSTA
+  REJEITADO
+  ENTREVISTA
+  OFERTA
+}
+enum JobType {
+  FULLSTACK
+  FRONTEND
+  BACKEND
+  IA
+  SUPORTE
+  OUTRO
+}
+enum JobQuality {
+  BOA
+  MEDIA
+  RUIM
+}
+model Job {
+  id            Int         @id @default(autoincrement())
+  cidade        String?
+  empresa       String
+  url           String
+  descricao     String?
+
+  local         JobLocation @default(NAO_INFORMADO)
+  status        JobStatus   @default(SALVA)
+  tipo          JobType
+  qualidade     JobQuality?
+
+  chance        Int?        // 0 a 100
+  habilidades   String?     // lista simples separada por vírgula
+
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
