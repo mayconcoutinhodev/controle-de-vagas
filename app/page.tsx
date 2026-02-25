@@ -1,6 +1,7 @@
 
 "use client";
 
+import { FormVaga } from "../components/form";
 import { TableVagas } from "../components/table";
 
 
@@ -17,8 +18,8 @@ export default function Home() {
 
         <div style={{ width: "60vw", height: "100%", backgroundColor: "#333", }}>
 
-        
-    <TableVagas/>
+
+          <TableVagas />
 
 
         </div>
@@ -28,7 +29,7 @@ export default function Home() {
       <div style={{ width: "40vw", height: '100%', backgroundColor: "#333" }}>
 
 
-
+        <FormVaga />
 
 
       </div>

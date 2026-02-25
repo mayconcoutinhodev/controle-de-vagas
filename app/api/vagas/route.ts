@@ -23,6 +23,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
+
     const job = await prisma.job.create({
       data: {
         cidade: body.cidade,
@@ -38,8 +39,13 @@ export async function POST(req: Request) {
       },
     });
 
+
+
     return NextResponse.json(job, { status: 201 });
   } catch (error) {
+
+    console.log(error)
+
     return NextResponse.json(
       { error: "Erro ao criar vaga" },
       { status: 500 }
